@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="485.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SortController">
+   <children>
+      <HBox id="pause" fx:id="hBox" alignment="CENTER" layoutX="33.0" layoutY="23.0" prefHeight="230.0" prefWidth="434.0" spacing="20">
+        </HBox>
+      <Button fx:id="sort" layoutX="20.0" layoutY="325.0" mnemonicParsing="false" onAction="#sapxep" prefHeight="32.0" prefWidth="98.0" text="sort" />
+      <Button fx:id="nextbutton" disable="true" layoutX="128.0" layoutY="379.0" mnemonicParsing="false" onAction="#next" prefHeight="31.0" prefWidth="83.0" text="next" />
+      <ChoiceBox fx:id="choicebox" layoutX="234.0" layoutY="325.0" prefHeight="32.0" prefWidth="150.0">
+            	
+        	</ChoiceBox>
+      <Button fx:id="back" layoutX="128.0" layoutY="325.0" mnemonicParsing="false" onAction="#goBack" prefHeight="32.0" prefWidth="98.0" text="xong" />
+      
+      <Button fx:id="pause" layoutX="250.0" layoutY="382.0" mnemonicParsing="false" onAction="#dung" prefHeight="25.0" prefWidth="71.0" text="pause" />
+      <Button fx:id="back1" layoutX="358.0" layoutY="382.0" mnemonicParsing="false" onAction="#rollback" prefHeight="25.0" prefWidth="71.0" text="back" />
+      <Slider fx:id="slider" layoutX="58.0" layoutY="423.0" max="4000.0" min="100.0" value="1000.0" />
+      <Label fx:id="fast" layoutX="19.0" layoutY="422.0" text="fast" />
+      <Label fx:id="slow" layoutX="212.0" layoutY="422.0" text="slow" />
+      
+   </children>
+</AnchorPane>

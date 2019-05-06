@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <Button fx:id="buttonNhap" disable="true" layoutX="118.0" layoutY="155.0" mnemonicParsing="false" onAction="#nhap" prefHeight="25.0" prefWidth="83.0" text="Nhập">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button id="buttonXoa" fx:id="buttonXoa" layoutX="217.0" layoutY="155.0" mnemonicParsing="false" onAction="#xoa" prefHeight="30.0" prefWidth="72.0" text="Xóa" />
+      <Label layoutX="16.0" layoutY="82.0" prefHeight="25.0" prefWidth="90.0" text="Số điện thoại" />
+      <TextField fx:id="phonenumber" layoutX="120.0" layoutY="82.0" promptText="bắt đầu bằng số 0" />
+      <TextField fx:id="username" layoutX="120.0" layoutY="118.0" promptText="Họ tên tiếng việt" />
+      <Label layoutX="19.0" layoutY="118.0" prefHeight="25.0" prefWidth="72.0" text="Tên" />
+      
+      <Label alignment="TOP_CENTER" layoutX="48.0" layoutY="28.0" prefHeight="17.0" prefWidth="222.0" text="Nhập" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="userTable" layoutX="321.0" layoutY="70.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="phonenumbercolumn" prefWidth="75.0" text="SĐT" />
+          <TableColumn fx:id="usernamecolumn" prefWidth="124.0" text="Tên" />
+        </columns>
+      </TableView>
+      <Button fx:id="buttonChuyen" layoutX="153.0" layoutY="203.0" mnemonicParsing="false" onAction="#chuyen" prefHeight="35.0" prefWidth="83.0" text="chuyển" />
+   </children>
+
+</AnchorPane>
