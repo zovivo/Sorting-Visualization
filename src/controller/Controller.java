@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,46 +40,37 @@ private TextField phonenumber;
 
 
 @FXML
-private TableView<User> userTable;
+private TableView<String> userTable;
 @FXML
-private TableColumn<User, String> phonenumbercolumn;
-@FXML
-private TableColumn<User, String> usernamecolumn;
+private TableColumn<String, String> phonenumbercolumn;
 
-@FXML
-private TableColumn<User, String> uservalue;
-public static ObservableList<User> userList  = FXCollections.observableArrayList(
-		new User("0123456789","Tran Manh Cong1"),
-		new User("0123456789","Tran anh Cong2"),
-		new User("0123456789","Tran Manh ong3"),
-		new User("0123456789","Tran Manh Cong4"),
-		new User("0123456789","Tran Manh Cong5"),
-		new User("0123456789","Tran anh ong6"),
-		new User("0123456789","Tran Manh Cong7"),
-		new User("0123456789","Tran Manh Cong8"),
-		new User("0123456789","Tran anh Cong9"),
-		new User("0123456789","Tran Manh Cong10"),
-		new User("0123456789","Tran Manh ong11"),
-		new User("0123456789","Tran Manh Cong12")
+public static ObservableList<String> userList  = FXCollections.observableArrayList(
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789"),
+		("0123456789")
 		);
-
-
-public void show(String a) {
-	System.out.println(a);
-}
 
 
 public void nhap(ActionEvent event) {
 		
-	User newUser = new User(phonenumber.getText(), username.getText());
-	userList.add(newUser);
-	username.clear();
+	String newNumber = new String(phonenumber.getText());
+	userList.add(newNumber);
+	//username.clear();
 	phonenumber.clear();
 	
 }
 
 public void xoa(ActionEvent event) {
-	User selected = userTable.getSelectionModel().getSelectedItem();
+	String selected = userTable.getSelectionModel().getSelectedItem();
 	userList.remove(selected);
 		
 }
@@ -87,7 +79,7 @@ public void chuyen(ActionEvent event) throws IOException {
 	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	for (int i = 0; i < userList.size(); i++) {
 		
-		System.out.println(userList.get(i).getValue());
+		System.out.println(userList.get(i));
 		
 	}
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sort.fxml"));
@@ -116,26 +108,27 @@ public void chuyen(ActionEvent event) throws IOException {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		username.textProperty().addListener((obs,oldText,newText) -> {buttonNhap.setDisable(newText.trim().isEmpty());});
+		//username.textProperty().addListener((obs,oldText,newText) -> {buttonNhap.setDisable(newText.trim().isEmpty());});
 		phonenumber.textProperty().addListener((obs,oldText,newText) -> {buttonNhap.setDisable(newText.trim().isEmpty());});
 		
 		
-		userList = FXCollections.observableArrayList(
-				new User("16","A A M"),
-				new User("100","A A L"),
-				new User("90","A A K"),
-				new User("8","A A I"),
-				new User("77","A A H"),
-				new User("6","A A G"),
-				new User("5614","A A F"),
-				new User("10","A A E"),
-				new User("0","A A D"),
-				new User("214","A A C"),
-				new User("4453","A A B"),
-				new User("3","A A A")
+	userList = FXCollections.observableArrayList(
+				("6789"),
+				("89"),
+				("9"),
+				("56"),
+				("123"),
+				("12"),
+				("0"),
+				("6"),
+				("59"),
+				("88"),
+				("105"),
+				("221")
 				);
-		usernamecolumn.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
-		phonenumbercolumn.setCellValueFactory(new PropertyValueFactory<User, String>("phonenumber"));
+		//usernamecolumn.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
+		//phonenumbercolumn.setCellValueFactory(new PropertyValueFactory<String, String>("phonenumber"));
+		phonenumbercolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 		userTable.setItems(userList);
 		// TODO Auto-generated method stub
 		

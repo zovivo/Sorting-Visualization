@@ -28,12 +28,12 @@ public class viewcode {
 	     ArrayList<StackPane> list = new ArrayList<>();
 	     Random random = new Random(5);
 	     for (int i = 0; i < Controller.userList.size() ; i++) {
-	         int num = (Integer.parseInt(Controller.userList.get(i).getPhonenumber()))/1000;
+	         int num = (Integer.parseInt(Controller.userList.get(i)))/1000;
 	         CNode node = new CNode(40, (num ) + 50);
 	         //node.setAccessibleText(String.valueOf(num));
 	         node.setFill(Color.valueOf("#ADD8E6"));
-	         node.setId(String.valueOf(Controller.userList.get(i).getPhonenumber()));
-	         Text text = new Text(String.valueOf(Controller.userList.get(i).getPhonenumber()));
+	         node.setId(String.valueOf(Controller.userList.get(i)));
+	         Text text = new Text(String.valueOf(Controller.userList.get(i)));
 	         StackPane stackPane = new StackPane();
 	         stackPane.setPrefSize(node.getWidth(), node.getHeight());
 	         stackPane.setId(String.valueOf(num));

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.SequentialTransition;
 import javafx.scene.layout.StackPane;
 
-public class HeapSort extends AbstractSort {
+public class HeapSort extends NormalSort {
 	
 	
 	
@@ -22,9 +22,9 @@ public class HeapSort extends AbstractSort {
             arr[0] = arr[i]; 
             arr[i] = temp;
             step = i - 0;
-            sq.getChildren().add(fttruoc(list.get(0), list.get(i), speed));
+            sq.getChildren().add(FillBeforeSwap(list.get(0), list.get(i), speed));
             sq.getChildren().add(swapMe(list.get(0), list.get(i), step, list, speed));
-            sq.getChildren().add(ftve(list.get(0), list.get(i), speed));
+            sq.getChildren().add(FillAfterSwap(list.get(0), list.get(i), speed));
             heapify(arr, i, 0, sq,list, speed); 
         } 
         for (int j = 0; j < arr.length; j++) {
@@ -48,9 +48,9 @@ public class HeapSort extends AbstractSort {
             arr[i] = arr[max]; 
             arr[max] = swap; 
             int step  = max - i;
-            sq.getChildren().add(fttruoc(list.get(i), list.get(max), speed));
+            sq.getChildren().add(FillBeforeSwap(list.get(i), list.get(max), speed));
             sq.getChildren().add(swapMe(list.get(i), list.get(max), step, list, speed));
-            sq.getChildren().add(ftve(list.get(i), list.get(max), speed));
+            sq.getChildren().add(FillAfterSwap(list.get(i), list.get(max), speed));
             heapify(arr, n, max, sq,list,speed); 
         } 
     }

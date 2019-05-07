@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.animation.SequentialTransition;
 import javafx.scene.layout.StackPane;
 
-public class QuickSort extends AbstractSort {
+public class QuickSort extends NormalSort {
 	
 	 private SequentialTransition Sort(int[] arr, ArrayList<StackPane> list ,double speed) {
 		 
@@ -46,18 +46,18 @@ public class QuickSort extends AbstractSort {
 	                arr[i] = arr[j]; 
 	                arr[j] = temp; 
 	                step = j - i;
-	                sq.getChildren().add(fttruoc(list.get(i), list.get(j),speed));
+	                sq.getChildren().add(FillBeforeSwap(list.get(i), list.get(j),speed));
 	                sq.getChildren().add(swapMe(list.get(i), list.get(j), step, list, speed));
-	                sq.getChildren().add(ftve(list.get(j), list.get(i), speed));
+	                sq.getChildren().add(FillAfterSwap(list.get(j), list.get(i), speed));
 	            } 
 	        } 
 	        int temp = arr[i+1]; 
 	        arr[i+1] = arr[high]; 
 	        arr[high] = temp; 
 	        step = (high) - (i+1);
-	        sq.getChildren().add(fttruoc(list.get(i+1), list.get(high), speed));
+	        sq.getChildren().add(FillBeforeSwap(list.get(i+1), list.get(high), speed));
 	        sq.getChildren().add(swapMe(list.get(i+1), list.get(high), step, list, speed));
-	        sq.getChildren().add(ftve(list.get(i+1), list.get(high), speed));
+	        sq.getChildren().add(FillAfterSwap(list.get(i+1), list.get(high), speed));
 	  
 	        return i+1; 
 	    }

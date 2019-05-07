@@ -10,7 +10,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-public class BubbleSort extends AbstractSort {
+public class BubbleSort extends NormalSort {
 	
 	
 	
@@ -29,9 +29,9 @@ public class BubbleSort extends AbstractSort {
 		                    arr[j - 1] = arr[j];
 		                    arr[j] = temp;
 		                    int a =j-(j-1);
-		                    sq.getChildren().add(fttruoc(list.get(j - 1), list.get(j), speed));
+		                    sq.getChildren().add(FillBeforeSwap(list.get(j - 1), list.get(j), speed));
 		                    sq.getChildren().add(swapMe(list.get(j - 1), list.get(j),a, list, speed));
-		                    sq.getChildren().add(ftve(list.get(j), list.get(j - 1), speed));
+		                    sq.getChildren().add(FillAfterSwap(list.get(j), list.get(j - 1), speed));
 		                    
 		                }
 		            }
