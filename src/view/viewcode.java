@@ -3,7 +3,6 @@ package view;
 import java.util.ArrayList;
 import java.util.Random;
 
-import cnode.CNode;
 import controller.Controller;
 import controller.SortController;
 import javafx.collections.FXCollections;
@@ -15,6 +14,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import models.CNode;
+import models.Element;;
 
 public class viewcode {
 	
@@ -25,21 +26,16 @@ public class viewcode {
 		choicebox.setItems(FXCollections.observableArrayList("bubble sort","quick sort","heap sort","radix sort"));
 		choicebox.setValue("bubble sort");
 		
-	     ArrayList<StackPane> list = new ArrayList<>();
-	     Random random = new Random(5);
-	     for (int i = 0; i < Controller.userList.size() ; i++) {
-	         int num = (Integer.parseInt(Controller.userList.get(i)))/1000;
-	         CNode node = new CNode(40, (num ) + 50);
-	         //node.setAccessibleText(String.valueOf(num));
-	         node.setFill(Color.valueOf("#ADD8E6"));
-	         node.setId(String.valueOf(Controller.userList.get(i)));
-	         Text text = new Text(String.valueOf(Controller.userList.get(i)));
-	         StackPane stackPane = new StackPane();
-	         stackPane.setPrefSize(node.getWidth(), node.getHeight());
-	         stackPane.setId(String.valueOf(num));
-	         stackPane.getChildren().addAll(node, text);
-	         list.add(stackPane);
-	         
+		  ArrayList<StackPane> list = new ArrayList<>();
+		     Random random = new Random(5);
+		     for (int i = 0; i < Controller.NumberList.size() ; i++) {
+		         int num = (Integer.parseInt(Controller.NumberList.get(i)));
+		         CNode node = new CNode(num, i);
+		         Text text = new Text(String.valueOf(Controller.NumberList.get(i)));
+		         StackPane stackPane = new StackPane();
+		         stackPane.setPrefSize(node.getWidth(), node.getHeight());
+		         stackPane.getChildren().addAll(node, text);
+		         list.add(stackPane);
 	         
 	     }
 	

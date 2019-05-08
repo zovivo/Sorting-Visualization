@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import javafx.animation.SequentialTransition;
 import javafx.scene.layout.StackPane;
+import models.Element;
 
-public class HeapSort extends NormalSort {
+public class HeapSort extends NormalSort implements Sortable {
 	
 	
-	
-	private SequentialTransition Sort(int[] arr, ArrayList<StackPane> list, double speed) {
+   @Override
+	public SequentialTransition SortAndDisplay(int[] arr, ArrayList<StackPane> list, double speed) {
 		// TODO Auto-generated method stub
 		SequentialTransition sq = new SequentialTransition();
 		int step;
@@ -58,7 +59,7 @@ public class HeapSort extends NormalSort {
 
 	public HeapSort( ArrayList<StackPane>list,double speed) {
 		
-		setSq(Sort(generateArrayInt(list), list,speed));
+		setSq(SortAndDisplay(generateArrayInt(list), list,speed));
 		// TODO Auto-generated constructor stub
 	}
 

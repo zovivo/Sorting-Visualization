@@ -9,13 +9,13 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import models.Element;
 
-public class BubbleSort extends NormalSort {
+public class BubbleSort extends NormalSort implements Sortable {
 	
 	
-	
-
-	private SequentialTransition Sort( int[] arr,ArrayList<StackPane> list, double speed) {
+	@Override
+	public SequentialTransition SortAndDisplay( int[] arr,ArrayList<StackPane> list, double speed) {
 		
 		  SequentialTransition sq = new SequentialTransition();
 		
@@ -45,10 +45,13 @@ public class BubbleSort extends NormalSort {
 	        return sq;
 	    }
 
-	public BubbleSort(ArrayList<StackPane> list,double speed) {
-		//int [] arr = generateArrayInt(list);
-		 setSq(Sort(generateArrayInt(list),list, speed)) ;
-		// TODO Auto-generated constructor stub
+	public BubbleSort(ArrayList<StackPane> list,double speed) {	
+		 setSq(SortAndDisplay(generateArrayInt(list),list, speed)) ;
+	
 	}
+	
+	
+	
 
+	
 }

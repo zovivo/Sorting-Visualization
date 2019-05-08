@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import javafx.animation.SequentialTransition;
 import javafx.scene.layout.StackPane;
+import models.Element;
 
-public class QuickSort extends NormalSort {
-	
-	 private SequentialTransition Sort(int[] arr, ArrayList<StackPane> list ,double speed) {
+public class QuickSort extends NormalSort implements Sortable {
+	@Override
+	 public SequentialTransition SortAndDisplay(int[] arr, ArrayList<StackPane> list ,double speed) {
 		 
 		// ArrayList<StackPane> list1 = list;
 			SequentialTransition sq = new SequentialTransition();
@@ -67,7 +68,7 @@ public class QuickSort extends NormalSort {
 
 	public QuickSort( ArrayList<StackPane> list,double speed) {
 		//sint[] arr = generateArrayInt(list);
-		setSq(Sort(generateArrayInt(list), list,speed));
+		setSq(SortAndDisplay(generateArrayInt(list), list,speed));
 		
 		// TODO Auto-generated constructor stub
 	}

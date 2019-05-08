@@ -9,7 +9,6 @@ import java.util.Random;
 
 import com.sun.javafx.geom.Shape;
 
-import cnode.CNode;
 import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -38,7 +37,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import models.User;
+import models.CNode;
+import models.Element;
 import models.SortingAlgorithms.AbstractSort;
 import models.SortingAlgorithms.BubbleSort;
 import models.SortingAlgorithms.QuickSort;
@@ -54,8 +54,7 @@ public class SortController  {
 
 	@FXML
 	private HBox hBox ;
-	@FXML
-	private Label label;
+	
 	@FXML
 	private Button nextbutton ;
 	@FXML
@@ -141,7 +140,8 @@ public class SortController  {
 	
 	
 	
-	public void sapxep() {
+	public void Sort() {
+		choicebox.setDisable(true);
 		sort.setDisable(true);
 		nextbutton.setDisable(false);
 		nextbutton.setText("pause");
@@ -199,11 +199,10 @@ public class SortController  {
 			    public void handle(ActionEvent event) {
 			    	System.out.println("end end end");
 			        nextbutton.setText("Again");
+			     
 			    }
 			});
-			
-		//sq.pause();
-	     
+		 
 	}
 	
 	
@@ -214,8 +213,6 @@ public class SortController  {
         
         Parent sampleParent = loader.load();
         Controller controller = loader.getController();
-        //controller.show("1");
-        
         Scene scene = new Scene(sampleParent,800,600);
         stage.setScene(scene);
     }

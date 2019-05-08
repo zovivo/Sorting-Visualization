@@ -3,14 +3,16 @@ package models.SortingAlgorithms;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import cnode.CNode;
 import javafx.animation.FillTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import models.CNode;
+import models.Element;
 
 public  class NormalSort extends AbstractSort {
 	
@@ -75,5 +77,7 @@ public  class NormalSort extends AbstractSort {
 	public NormalSort() {
 		// TODO Auto-generated constructor stub
 	}
+
+
 
 }

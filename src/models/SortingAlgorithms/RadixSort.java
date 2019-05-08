@@ -8,8 +8,10 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import models.CNode;
+import models.Element;
 
-public class RadixSort extends OtherSort {
+public class RadixSort extends OtherSort implements Sortable {
 	
 
 	
@@ -62,17 +64,12 @@ public class RadixSort extends OtherSort {
 	            countSort(arr, n, exp); 
 	    } 
 	  
-	   
-	    static void print(int arr[], int n) 
-	    { 
-	        for (int i=0; i<n; i++) 
-	            System.out.print(arr[i]+" "); 
-	    } 
+	
 	  
 	   
 	    
-	    
-		private SequentialTransition Sort(int[] arr, ArrayList<StackPane> list,double speed) {
+	    @Override
+		public SequentialTransition SortAndDisplay(int[] arr, ArrayList<StackPane> list,double speed) {
 			SequentialTransition sq = new SequentialTransition();
 			int n =arr.length;
 			int arr1[] = new int[arr.length];
@@ -83,10 +80,7 @@ public class RadixSort extends OtherSort {
 	        int m = getMax(arr, n); 
 	        int [] newArr = arr;
 	   
-	        
-	   	 for (int j = 0; j < list.size(); j++) {
-   	  		System.out.print(list.get(j).getId()+"  ");
- 	 }
+	
 	        for (int exp = 1; m/exp > 0; exp *= 10) {
 	        	ParallelTransition pt = new ParallelTransition();
 	        	for (int i = 0; i < newArr.length; i++) {
@@ -96,28 +90,17 @@ public class RadixSort extends OtherSort {
 	        	 newArr = countSort(arr, n, exp);
 	        	 
 	        	
-	        	 print(arr1, n);
-	        	 System.out.println("\n");
-	        	 print(newArr, n);
-	        	 ArrayList<StackPane> list2 = new ArrayList<StackPane>();
-	        
 	        	
-	        	 
-	        	 	        	 
-	        	 
 	        	  for (int i = 0; i < arr1.length; i++) {
-	        		 // StackPane sp = AbstractSort.getbyID(list, i);
-	        		
-	        		
 	  				for (int j = 0; j < newArr.length; j++) 
 	  				{
-	  					if (Integer.parseInt(list.get(i).getChildren().get(0).getId())==(newArr[j])) {
+	  					if (((CNode)list.get(i).getChildren().get(0)).getValue()==(newArr[j])) {
 	  						
 	  						
-	  	                   int a=j-Integer.parseInt(list.get(i).getId());
-	  	                    System.out.println(a+" "+j+" "+i);
-	  	                 list.get(i).setId(String.valueOf(j));
+	  	                   int a=j-(((CNode)list.get(i).getChildren().get(0)).getCurrentPosition());
+	  	                   	((CNode)list.get(i).getChildren().get(0)).setCurrentPosition(j);
 	  	                    pt.getChildren().add(move(list.get(i), a, list, speed));
+	  	                    pt.setDelay(Duration.millis(2000));
 	  	   				}
 	  				}
 	  			
@@ -137,7 +120,7 @@ public class RadixSort extends OtherSort {
 
 	public RadixSort(ArrayList<StackPane> list,double speed) {
 		
-		setSq(Sort(generateArrayInt(list), list,speed));
+		setSq(SortAndDisplay(generateArrayInt(list), list,speed));
 		
 		
 	}
