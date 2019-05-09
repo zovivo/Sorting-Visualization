@@ -1,36 +1,16 @@
 package models;
 
-import controller.Controller;
-import javafx.scene.Node;
+import javafx.animation.TranslateTransition;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+import javafx.util.Duration;
 
-public class Element extends StackPane {
-	private static final Color color = Color.BLUE;
+public class Element extends Rectangle {
+	private static final Color color = Color.valueOf("#ADD8E6");
 	private static final double width=40;
-	double height;
-	private Rectangle node = new Rectangle();
 	private int CurrentPosition;
-	private Text text ;
-	
-	public Element(int number,int position ) {
-		
-	   this.setText(new Text(String.valueOf(number)));
-	   this.node.setHeight(number/1000+50);
-	 //  this.node.setFill(color.valueOf(value)));
-	   this.setPrefSize(width, this.node.getHeight());
-	   this.setCurrentPosition(position);
-	   this.getChildren().addAll(node,text);
-	   this.setId(String.valueOf(text));
-	//   node.getchi
-		
-
-		
-		// TODO Auto-generated constructor stub
-	}
-
+	private int value;
 	public int getCurrentPosition() {
 		return CurrentPosition;
 	}
@@ -38,15 +18,21 @@ public class Element extends StackPane {
 	public void setCurrentPosition(int currentPosition) {
 		CurrentPosition = currentPosition;
 	}
+  public Element(int value,int position) {
+    setValue(value);
+    setCurrentPosition(position);
+    this.setFill(color);
+    this.setWidth(width);
+    this.setHeight(value/1000+50);
+  }
+  
+  public void setValue(int value) {
+	this.value = value;
+}
 
-	public Text getText() {
-		return text;
-	}
-
-	public void setText(Text text) {
-		this.text = text;
-	}
-	
+  public int getValue() {
+    return this.value;
+  }
 
 
 }

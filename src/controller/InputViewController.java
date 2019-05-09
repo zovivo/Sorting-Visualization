@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -25,14 +26,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class Controller implements Initializable {
+public class InputViewController implements Initializable {
 	
 @FXML
-private Button buttonNhap;
+private Button Enter;
 @FXML
-private Button buttonXoa;
+private Button Delete;
 @FXML
-private Button buttonChuyen;
+private Button toSortScene;
 
 @FXML
 private TextField numberTextField;
@@ -41,7 +42,7 @@ private Label CheckandShow;
 @FXML
 private TableView<String> userTable;
 @FXML
-private TableColumn<String, String> phonenumbercolumn;
+private TableColumn<String, String> numbercolumn;
 
 public static ObservableList<String> NumberList  = FXCollections.observableArrayList();
 
@@ -49,8 +50,7 @@ public static boolean check(String number) {
 	try {
 	 int num =	Integer.parseInt(number);
 	 if (num < 0) {
-		 throw new Exception();       //   reject negative numbers
-		
+		return false;
 	}
 
 	} catch (Exception e) {
@@ -58,7 +58,7 @@ public static boolean check(String number) {
 	}
 	return true;
 }
-public void nhap(ActionEvent event) {
+public void Enter(ActionEvent event) {
 	if (check(numberTextField.getText())) {
 	String newNumber = new String(numberTextField.getText());
 	NumberList.add(newNumber);
@@ -70,37 +70,26 @@ public void nhap(ActionEvent event) {
 	
 }
 
-public void xoa(ActionEvent event) {
+public void Delete(ActionEvent event) {
 	String selected = userTable.getSelectionModel().getSelectedItem();
 	NumberList.remove(selected);
 		
 }
 
-public void chuyen(ActionEvent event) throws IOException {
+public void toSortView(ActionEvent event) throws IOException {
 	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	for (int i = 0; i < NumberList.size(); i++) {
-		
-		System.out.println(NumberList.get(i));
-		
-	}
-	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sort.fxml"));
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SortView.fxml"));
 	Parent userview = loader.load();   // phai load truoc moi duoc goi getController
-	SortController sortController =((SortController) loader.getController());
-	//sortController.sortUI();
-	
+	SortViewController sortController =((SortViewController) loader.getController());
 	Scene scene = new Scene(userview,800,600);
-	
-	
 	stage.setScene(scene);
-	
-	
-	
+
 }
 
 
 
 
-	public Controller() {
+	public InputViewController() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -109,27 +98,17 @@ public void chuyen(ActionEvent event) throws IOException {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//username.textProperty().addListener((obs,oldText,newText) -> {buttonNhap.setDisable(newText.trim().isEmpty());});
-		numberTextField.textProperty().addListener((obs,oldText,newText) -> {buttonNhap.setDisable(newText.trim().isEmpty());});
 		
+		 Random rd = new Random(); // creating Random object
+	      String[] arr = new String[12];
+	      for (int i = 0; i < arr.length; i++) {
+			arr[i]= String.valueOf(rd.nextInt(1000));		
+		}
+	      NumberList = FXCollections.observableArrayList(arr);
+	      
 		
-		NumberList = FXCollections.observableArrayList(
-				("6789"),
-				("89"),
-				("9"),
-				("56"),
-				("123"),
-				("12"),
-				("0"),
-				("6"),
-				("59"),
-				("88"),
-				("105"),
-				("221")
-				);
-		//usernamecolumn.setCellValueFactory(new PropertyValueFactory<User, String>("userName"));
-		//phonenumbercolumn.setCellValueFactory(new PropertyValueFactory<String, String>("phonenumber"));
-		phonenumbercolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+		numberTextField.textProperty().addListener((obs,oldText,newText) -> {Enter.setDisable(newText.trim().isEmpty());});
+		numbercolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 		userTable.setItems(NumberList);
 		// TODO Auto-generated method stub
 		

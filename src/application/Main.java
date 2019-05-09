@@ -23,7 +23,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			Parent root = (Parent)  FXMLLoader.load(getClass().getResource("/view/newtest.fxml"));
+			Parent root = (Parent)  FXMLLoader.load(getClass().getResource("/view/InputView.fxml"));
 				
 			Scene scene = new Scene(root,800,600);
 			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());

@@ -8,7 +8,6 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import models.CNode;
 import models.Element;
 
 public class RadixSort extends OtherSort implements Sortable {
@@ -94,11 +93,11 @@ public class RadixSort extends OtherSort implements Sortable {
 	        	  for (int i = 0; i < arr1.length; i++) {
 	  				for (int j = 0; j < newArr.length; j++) 
 	  				{
-	  					if (((CNode)list.get(i).getChildren().get(0)).getValue()==(newArr[j])) {
+	  					if (((Element)list.get(i).getChildren().get(0)).getValue()==(newArr[j])) {
 	  						
 	  						
-	  	                   int a=j-(((CNode)list.get(i).getChildren().get(0)).getCurrentPosition());
-	  	                   	((CNode)list.get(i).getChildren().get(0)).setCurrentPosition(j);
+	  	                   int a=j-(((Element)list.get(i).getChildren().get(0)).getCurrentPosition());
+	  	                   	((Element)list.get(i).getChildren().get(0)).setCurrentPosition(j);
 	  	                    pt.getChildren().add(move(list.get(i), a, list, speed));
 	  	                    pt.setDelay(Duration.millis(2000));
 	  	   				}
@@ -115,12 +114,12 @@ public class RadixSort extends OtherSort implements Sortable {
 	    
 	    
 	    
-	
+	   
 	
 
 	public RadixSort(ArrayList<StackPane> list,double speed) {
 		
-		setSq(SortAndDisplay(generateArrayInt(list), list,speed));
+		setSq(SortAndDisplay(generateIntArray(list), list,speed));
 		
 		
 	}

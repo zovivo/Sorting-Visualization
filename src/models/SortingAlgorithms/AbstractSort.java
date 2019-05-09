@@ -11,12 +11,12 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import models.CNode;
 import models.Element;
+
 
 public abstract class AbstractSort  {
 	
-	
+
 	
 	private SequentialTransition seq = new SequentialTransition();
 	
@@ -30,17 +30,18 @@ public abstract class AbstractSort  {
 		this.seq = sq;
 	}
 	
-	public static int[] generateArrayInt(List<StackPane> list) {
+	public static int[] generateIntArray(List<StackPane> list) {
 		int arr[] = new int[list.size()];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (((CNode)list.get(i).getChildren().get(0)).getValue());
+            arr[i] = (((Element)list.get(i).getChildren().get(0)).getValue());
         }
         return arr;
     }
 	
 	
-
 	public AbstractSort() {
+		
+	
 		// TODO Auto-generated constructor stub
 	}
 

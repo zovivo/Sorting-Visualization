@@ -37,7 +37,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import models.CNode;
 import models.Element;
 import models.SortingAlgorithms.AbstractSort;
 import models.SortingAlgorithms.BubbleSort;
@@ -48,7 +47,7 @@ import view.viewcode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class SortController  {
+public class SortViewController  {
 
 
 
@@ -56,36 +55,51 @@ public class SortController  {
 	private HBox hBox ;
 	
 	@FXML
-	private Button nextbutton ;
+	private Button Play_Pause ;
 	@FXML
 	private ChoiceBox<String> choicebox ;
+	@FXML
+	private Button Forward ;
 	
 	@FXML
-	private Button back;
+	private Button backtoInput ;
+	@FXML
+	private Button Back;
 	@FXML
 	private Button sort;
 	@FXML
-	private Button pause;
-	@FXML
-	private Button back1;
-	@FXML
-	private HBox slideBox = new HBox(5);
-	@FXML
-	private Label slow ;
-	@FXML
-	private Label fast ;
-	@FXML
-	private  Slider slider = new Slider(100, 4000, 1000);
+	private  Slider slider ;
     
-	
 	private SequentialTransition sq = new SequentialTransition();
+	private AbstractSort SortAlgorithm ;
 	
-	private static boolean nextflag;
 	private ArrayList<StackPane> list = new ArrayList<>();
-	private int[] arr;
 	private double speed = 1000;
+	
+	
+	public static ArrayList<StackPane> sortUI(HBox hBox,ChoiceBox<String> choicebox ) {
+		choicebox.setItems(FXCollections.observableArrayList("Bubble Sort","Quick Sort","Heap Sort","Radix Sort"));
+		choicebox.setValue("Bubble Sort");
+		
+		  ArrayList<StackPane> list = new ArrayList<>();
+		     Random random = new Random(5);
+		     for (int i = 0; i < InputViewController.NumberList.size() ; i++) {
+		         int num = (Integer.parseInt(InputViewController.NumberList.get(i)));
+		         Element node = new Element(num, i);
+		         Text text = new Text(String.valueOf(InputViewController.NumberList.get(i)));
+		         StackPane stackPane = new StackPane();
+		         stackPane.setPrefSize(node.getWidth(), node.getHeight());
+		         stackPane.getChildren().addAll(node, text);
+		         list.add(stackPane);
+	         
+	     }
+	
+	     
+	     hBox.getChildren().addAll(list);
+	     return list;
+			}
 	public void initialize() {
-	list=viewcode.sortUI(hBox,choicebox); // ham nay tra ve list <StackPane>
+	list=sortUI(hBox,choicebox); // ham nay tra ve list <StackPane>
 	 slider.valueProperty().addListener(new ChangeListener<Number>() {
          @Override
          public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -93,112 +107,79 @@ public class SortController  {
          }
      });
 	}
-	 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	  
-	  
-	  
-	
-	  public boolean check() {
-		  if(nextbutton.getText().equals("Resume"))
+	public boolean check() {
+		  if(Play_Pause.getText().equals("Resume"))
 			  return true;
-		  if (nextbutton.getText().equals("Again")) 
+		  if (Play_Pause.getText().equals("Again")) 
 			  return true;
 		  return false;
 	  }
 	  
-	public void next() {
+	public void Play_Pause() {
 		if(check())
 		{	sq.play();
-			nextbutton.setText("pause");
+		Play_Pause.setText("pause");
 		}
 		else 
 		{
 			sq.pause();
-			nextbutton.setText("Resume");
+			Play_Pause.setText("Resume");
 		}
 	}
-	public void dung() {
+	public void forwardClicked() {
 		
 		Duration a = sq.getCurrentTime();
 		
 		sq.jumpTo(Duration.millis(a.toMillis()+2000));
 	}
-	public void rollback() {
+	public void backwardClicked() {
 		Duration a = sq.getCurrentTime();
 		
 		sq.jumpTo(Duration.millis(a.toMillis()-2000));
 	}
 	
 	
-	
 	public void Sort() {
 		choicebox.setDisable(true);
 		sort.setDisable(true);
-		nextbutton.setDisable(false);
-		nextbutton.setText("pause");
-        int [] arr1;
-		
-		
-		switch (choicebox.getValue()) {
-		case "bubble sort":
-		
-          sq = (new BubbleSort( list, speed)).getSq();
+		Play_Pause.setDisable(false);
+		Play_Pause.setText("pause");
+       	switch (choicebox.getValue()) {
+		case "Bubble Sort":
+			SortAlgorithm = new BubbleSort(list, speed);
+			sq = (SortAlgorithm).getSq();
 			
 			break;
 		
 			
-		case "quick sort":
-			
-			
-			int [] arr = AbstractSort.generateArrayInt(list);
-			//sq = QuickSort(arr, list);
-			sq = (new QuickSort(list,speed)).getSq();
+		case "Quick Sort":
+			SortAlgorithm = new QuickSort(list, speed);
+			sq = (SortAlgorithm).getSq();
 		
 			break;
-		case "heap sort":
-			
-			
-			sq = (new HeapSort(list,speed)).getSq();
+		case "Heap Sort":
+			SortAlgorithm = new HeapSort(list, speed);
+			sq = (SortAlgorithm).getSq();
 			
 			break;
-		case "radix sort":
-			
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setId(String.valueOf(i));
-				
-			}
-			int[] arr2 = AbstractSort.generateArrayInt(list);
-			 int n =arr2.length;
-			 
-			 sq=(new RadixSort(list, speed).getSq());
-			//sq=radixSort(arr2, list);
-			// radixsort(arr2, n); 
-		      //  print(arr2, n); 
-	
+		case "Radix Sort":
+			SortAlgorithm = new RadixSort(list, speed);
+			 sq=(SortAlgorithm.getSq());
 			break;
 		default:
 			break;
 		}
 		
 	
-		
 		 sq.play();
 		 
 		 
 		 sq.setOnFinished(new EventHandler<ActionEvent>() {
 
 			    public void handle(ActionEvent event) {
-			    	System.out.println("end end end");
-			        nextbutton.setText("Again");
+			    	//System.out.println("end end end");
+			        Play_Pause.setText("Again");
+			       
 			     
 			    }
 			});
@@ -209,10 +190,10 @@ public class SortController  {
 	public void goBack(ActionEvent e) throws IOException {
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/newtest.fxml"));
+        loader.setLocation(getClass().getResource("/view/InputView.fxml"));
         
         Parent sampleParent = loader.load();
-        Controller controller = loader.getController();
+        InputViewController controller = loader.getController();
         Scene scene = new Scene(sampleParent,800,600);
         stage.setScene(scene);
     }
@@ -221,12 +202,10 @@ public class SortController  {
 	
 	
 	
-	public SortController() {
+	public SortViewController() {
 		
 		
 		
 	}
 
 }
-
-//Diep

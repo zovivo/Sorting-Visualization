@@ -9,7 +9,6 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import models.Element;
 
 public class BubbleSort extends NormalSort implements Sortable {
 	
@@ -23,7 +22,7 @@ public class BubbleSort extends NormalSort implements Sortable {
 		  
 		
 			  for (int i = 0;i< arr.length-1; i++) { 
-		            for (int j = 1;j< arr.length ; j++) {
+		            for (int j = 1; j < arr.length - i; j++) {
 		                if (arr[j-1]>arr[j]) {
 		                    temp = arr[j - 1];
 		                    arr[j - 1] = arr[j];
@@ -45,8 +44,12 @@ public class BubbleSort extends NormalSort implements Sortable {
 	        return sq;
 	    }
 
+	
+	
+	
 	public BubbleSort(ArrayList<StackPane> list,double speed) {	
-		 setSq(SortAndDisplay(generateArrayInt(list),list, speed)) ;
+		
+		 setSq(SortAndDisplay(generateIntArray(list),list, speed)) ;
 	
 	}
 	

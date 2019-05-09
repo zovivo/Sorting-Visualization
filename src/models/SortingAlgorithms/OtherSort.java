@@ -7,7 +7,6 @@ import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
-import models.Element;
 
 public  class OtherSort extends AbstractSort {
 	
@@ -27,9 +26,6 @@ public  class OtherSort extends AbstractSort {
 	       
 	        t1.setByX(60*a);
 	    
-	      
-	       
-	       
 	        pl.getChildren().addAll(t1);
 	        sq.getChildren().add(t1);
 	
