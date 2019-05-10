@@ -23,7 +23,7 @@ public class Element extends Rectangle {
     setCurrentPosition(position);
     this.setFill(color);
     this.setWidth(width);
-    this.setHeight(value/1000+50);
+    this.setHeight(value/100+50);
   }
   
   public void setValue(int value) {
