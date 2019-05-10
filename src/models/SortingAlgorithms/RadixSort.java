@@ -65,7 +65,16 @@ public class RadixSort extends OtherSort implements Sortable {
 	  
 	
 	  
-	   
+	   public ParallelTransition alldone(ArrayList<StackPane> list) {
+		   
+		   ParallelTransition pt = new ParallelTransition();
+		   for (int i = 0; i < list.size(); i++) {
+			   pt.getChildren().add(BubbleSort.donePosition(list.get(i)));
+			
+		}
+		   return pt;
+	
+	}
 	    
 	    @Override
 		public SequentialTransition SortAndDisplay(int[] arr, ArrayList<StackPane> list,double speed) {
@@ -108,7 +117,8 @@ public class RadixSort extends OtherSort implements Sortable {
 	        	sq.getChildren().add(pt);  
 	        	  
 	        	
-	        }		
+	        }
+	        sq.getChildren().add(alldone(list));
 			return sq;
 		}
 	    

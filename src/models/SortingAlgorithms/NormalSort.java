@@ -16,7 +16,7 @@ import models.Element;
 public  class NormalSort extends AbstractSort {
 	
 	public static ParallelTransition FillBeforeSwap(StackPane l1, StackPane l2,double speed) {
-		 ParallelTransition ft = new ParallelTransition();
+		 ParallelTransition pt = new ParallelTransition();
 	        FillTransition ft1 = new FillTransition();
 	        FillTransition ft2 = new FillTransition();
 	        ft1.setShape((Element)l1.getChildren().get(0));
@@ -25,12 +25,12 @@ public  class NormalSort extends AbstractSort {
 	        ft2.setDuration(Duration.millis(speed));
 	        ft2.setShape((Element)l2.getChildren().get(0));
 	        ft2.setToValue(Color.GRAY);
-	        ft.getChildren().addAll(ft1,ft2);
-	        return ft;
+	        pt.getChildren().addAll(ft1,ft2);
+	        return pt;
 	 }
 	 
 	public static ParallelTransition FillAfterSwap(StackPane l1, StackPane l2,double speed) {
-		 ParallelTransition ft = new ParallelTransition();
+		 ParallelTransition pt = new ParallelTransition();
 	        FillTransition ft1 = new FillTransition();
 	        FillTransition ft2 = new FillTransition();
 	        ft1.setShape((Element)l1.getChildren().get(0));
@@ -39,15 +39,15 @@ public  class NormalSort extends AbstractSort {
 	        ft2.setDuration(Duration.millis(speed));
 	        ft2.setShape((Element)l2.getChildren().get(0));
 	        ft2.setToValue(Color.valueOf("#ADD8E6"));
-	        ft.getChildren().addAll(ft1,ft2);
-	        return ft;
+	        pt.getChildren().addAll(ft1,ft2);
+	        return pt;
 	 }
 	
 	public static ParallelTransition swapMe(StackPane l1, StackPane l2, int a ,ArrayList<StackPane> list, double speed) {
-	   SequentialTransition sq = new SequentialTransition();
+	  
 	   TranslateTransition t1 = new TranslateTransition();
        TranslateTransition t2 = new TranslateTransition();
-       ParallelTransition ft = new ParallelTransition();
+      
        t1.setDuration(Duration.millis(speed));
        t2.setDuration(Duration.millis(speed));
        ParallelTransition pl = new ParallelTransition();

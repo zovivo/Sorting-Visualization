@@ -80,7 +80,7 @@ public void toSortView(ActionEvent event) throws IOException {
 	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SortView.fxml"));
 	Parent userview = loader.load();   // phai load truoc moi duoc goi getController
-	SortViewController sortController =((SortViewController) loader.getController());
+	//SortViewController sortController =((SortViewController) loader.getController());
 	Scene scene = new Scene(userview,800,600);
 	stage.setScene(scene);
 
@@ -93,24 +93,32 @@ public void toSortView(ActionEvent event) throws IOException {
 		// TODO Auto-generated constructor stub
 	}
 
-
+static {
+	Random rd = new Random(); // creating Random object
+String[] arr = new String[12];
+for (int i = 0; i < arr.length; i++) {
+	arr[i]= String.valueOf(rd.nextInt(1000));		
+}
+NumberList = FXCollections.observableArrayList(arr);
+}
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		 Random rd = new Random(); // creating Random object
+	/*	 Random rd = new Random(); // creating Random object
 	      String[] arr = new String[12];
 	      for (int i = 0; i < arr.length; i++) {
 			arr[i]= String.valueOf(rd.nextInt(1000));		
 		}
-	      NumberList = FXCollections.observableArrayList(arr);
+	      NumberList = FXCollections.observableArrayList(arr);*/
 	      
 		
 		numberTextField.textProperty().addListener((obs,oldText,newText) -> {Enter.setDisable(newText.trim().isEmpty());});
 		numbercolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
+		
 		userTable.setItems(NumberList);
-		// TODO Auto-generated method stub
+		
 		
 	}
 

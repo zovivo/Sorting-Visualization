@@ -75,14 +75,13 @@ public class SortViewController  {
 	
 	private ArrayList<StackPane> list = new ArrayList<>();
 	private double speed = 1000;
-	
+	private String[] arr = new String[12];
 	
 	public static ArrayList<StackPane> sortUI(HBox hBox,ChoiceBox<String> choicebox ) {
 		choicebox.setItems(FXCollections.observableArrayList("Bubble Sort","Quick Sort","Heap Sort","Radix Sort"));
 		choicebox.setValue("Bubble Sort");
 		
 		  ArrayList<StackPane> list = new ArrayList<>();
-		     Random random = new Random(5);
 		     for (int i = 0; i < InputViewController.NumberList.size() ; i++) {
 		         int num = (Integer.parseInt(InputViewController.NumberList.get(i)));
 		         Element node = new Element(num, i);
@@ -193,7 +192,9 @@ public class SortViewController  {
         loader.setLocation(getClass().getResource("/view/InputView.fxml"));
         
         Parent sampleParent = loader.load();
-        InputViewController controller = loader.getController();
+        InputViewController controller = (InputViewController) loader.getController();
+      
+      
         Scene scene = new Scene(sampleParent,800,600);
         stage.setScene(scene);
     }
