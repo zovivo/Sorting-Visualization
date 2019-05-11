@@ -1,0 +1,76 @@
+package models.SortingAlgorithms;
+
+import java.util.ArrayList;
+
+import javafx.animation.SequentialTransition;
+import javafx.scene.layout.StackPane;
+
+public class QuickSort extends NormalSort implements Sortable {
+	@Override
+	 public SequentialTransition SortAndDisplay(int[] arr, ArrayList<StackPane> list ,double speed) {
+		 
+		// ArrayList<StackPane> list1 = list;
+			SequentialTransition sq = new SequentialTransition();
+//			int n = arr.length;
+			sort(arr, 0, arr.length-1, sq, list,speed);
+		
+			return sq;
+		}
+	  
+		
+		void sort(int arr[], int low, int high, SequentialTransition sq,ArrayList<StackPane> list,double speed) 
+	    { 
+	        if (low < high) 
+	        { 
+	        	 int pi = partition(arr, low, high, sq,list,speed); 
+		            sq.getChildren().add(FillSortedPosition(list.get(pi)));
+		            sort(arr, low, pi-1, sq,list,speed);
+		            sq.getChildren().add(FillSortedPosition(list.get(pi-1)));
+		            sort(arr, pi+1, high, sq,list,speed);
+		            sq.getChildren().add(FillSortedPosition(list.get(high)));
+	        } 
+	    } 
+		
+		int partition(int arr[], int low, int high, SequentialTransition sq,ArrayList<StackPane> list,double speed) 
+	    { 
+//			SequentialTransition sq = new SequentialTransition();
+			int step;
+//			int n = arr.length;
+	        int pivot = arr[high];  
+	        int i = (low-1);
+	        for (int j=low; j<high; j++) 
+	        { 
+	            if (arr[j] <= pivot) 
+	            { 
+	                i++; 
+	                int temp = arr[i]; 
+	                arr[i] = arr[j]; 
+	                arr[j] = temp; 
+	                step = j - i;
+	                sq.getChildren().add(FillBeforeSwap(list.get(i), list.get(j),speed));
+	                sq.getChildren().add(swapMe(list.get(i), list.get(j), step, list, speed));
+	                sq.getChildren().add(FillAfterSwap(list.get(j), list.get(i), speed));
+	            } 
+	        } 
+	        int temp = arr[i+1]; 
+	        arr[i+1] = arr[high]; 
+	        arr[high] = temp; 
+	        step = (high) - (i+1);
+	        sq.getChildren().add(FillBeforeSwap(list.get(i+1), list.get(high), speed));
+	        sq.getChildren().add(swapMe(list.get(i+1), list.get(high), step, list, speed));
+	        sq.getChildren().add(FillAfterSwap(list.get(i+1), list.get(high), speed));
+	  
+	        return i+1; 
+	    }
+	
+	
+		
+
+	public QuickSort( ArrayList<StackPane> list,double speed) {
+		
+		setSq(SortAndDisplay(generateIntArray(list), list,speed));
+		
+		// TODO Auto-generated constructor stub
+	}
+
+}
