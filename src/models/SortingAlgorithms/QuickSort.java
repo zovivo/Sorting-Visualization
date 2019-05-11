@@ -23,16 +23,17 @@ public class QuickSort extends NormalSort implements Sortable {
 	        if (low < high) 
 	        { 
 	            int pi = partition(arr, low, high, sq,list,speed); 
-	            sort(arr, low, pi-1, sq,list,speed); 
-	            sort(arr, pi+1, high, sq,list,speed); 
+	            sq.getChildren().add(BubbleSort.donePosition(list.get(pi)));
+	            sort(arr, low, pi-1, sq,list,speed);
+	            sq.getChildren().add(BubbleSort.donePosition(list.get(pi-1)));
+	            sort(arr, pi+1, high, sq,list,speed);
+	            sq.getChildren().add(BubbleSort.donePosition(list.get(high)));
 	        } 
 	    } 
 		
 		int partition(int arr[], int low, int high, SequentialTransition sq,ArrayList<StackPane> list,double speed) 
 	    { 
-//			SequentialTransition sq = new SequentialTransition();
 			int step;
-//			int n = arr.length;
 	        int pivot = arr[high];  
 	        int i = (low-1);
 	        for (int j=low; j<high; j++) 
@@ -56,7 +57,7 @@ public class QuickSort extends NormalSort implements Sortable {
 	        sq.getChildren().add(FillBeforeSwap(list.get(i+1), list.get(high), speed));
 	        sq.getChildren().add(swapMe(list.get(i+1), list.get(high), step, list, speed));
 	        sq.getChildren().add(FillAfterSwap(list.get(i+1), list.get(high), speed));
-	  
+//            sq.getChildren().add(BubbleSort.donePosition(list.get(i+1)));
 	        return i+1; 
 	    }
 	
