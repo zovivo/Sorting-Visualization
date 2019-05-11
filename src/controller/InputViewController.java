@@ -46,7 +46,7 @@ private TableColumn<String, String> numbercolumn;
 
 public static ObservableList<String> NumberList  = FXCollections.observableArrayList();
 
-public static boolean check(String number) {
+ boolean check(String number) {
 	try {
 	 int num =	Integer.parseInt(number);
 	 if (num < 0) {

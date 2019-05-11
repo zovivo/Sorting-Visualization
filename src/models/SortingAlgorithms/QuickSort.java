@@ -22,9 +22,12 @@ public class QuickSort extends NormalSort implements Sortable {
 	    { 
 	        if (low < high) 
 	        { 
-	            int pi = partition(arr, low, high, sq,list,speed); 
-	            sort(arr, low, pi-1, sq,list,speed); 
-	            sort(arr, pi+1, high, sq,list,speed); 
+	        	 int pi = partition(arr, low, high, sq,list,speed); 
+		            sq.getChildren().add(FillSortedPosition(list.get(pi)));
+		            sort(arr, low, pi-1, sq,list,speed);
+		            sq.getChildren().add(FillSortedPosition(list.get(pi-1)));
+		            sort(arr, pi+1, high, sq,list,speed);
+		            sq.getChildren().add(FillSortedPosition(list.get(high)));
 	        } 
 	    } 
 		

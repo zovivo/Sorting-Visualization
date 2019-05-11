@@ -14,7 +14,7 @@ public  class OtherSort extends AbstractSort {
 	
 	
 	 
-    protected SequentialTransition move(StackPane l1, int a ,ArrayList<StackPane> list, double speed) {
+    protected static SequentialTransition move(StackPane l1, int a ,ArrayList<StackPane> list, double speed) {
     	SequentialTransition sq = new SequentialTransition();
 	 	TranslateTransition t1 = new TranslateTransition();
         TranslateTransition t2 = new TranslateTransition();

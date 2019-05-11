@@ -38,6 +38,17 @@ public abstract class AbstractSort  {
         return arr;
     }
 	
+	public static ParallelTransition FillSortedPosition(StackPane sp) {
+		ParallelTransition pl = new ParallelTransition();
+		FillTransition ft = new FillTransition();
+		ft.setShape((Element)sp.getChildren().get(0));
+        ft.setDuration(Duration.millis(100));
+        ft.setToValue(Color.BLUEVIOLET);
+        pl.getChildren().add(ft);
+		return pl;
+		
+	}
+	
 	
 	public AbstractSort() {
 		

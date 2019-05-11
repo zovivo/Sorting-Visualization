@@ -15,7 +15,7 @@ import models.Element;
 
 public  class NormalSort extends AbstractSort {
 	
-	public static ParallelTransition FillBeforeSwap(StackPane l1, StackPane l2,double speed) {
+	protected static ParallelTransition FillBeforeSwap(StackPane l1, StackPane l2,double speed) {
 		 ParallelTransition pt = new ParallelTransition();
 	        FillTransition ft1 = new FillTransition();
 	        FillTransition ft2 = new FillTransition();
@@ -29,7 +29,7 @@ public  class NormalSort extends AbstractSort {
 	        return pt;
 	 }
 	 
-	public static ParallelTransition FillAfterSwap(StackPane l1, StackPane l2,double speed) {
+	protected static ParallelTransition FillAfterSwap(StackPane l1, StackPane l2,double speed) {
 		 ParallelTransition pt = new ParallelTransition();
 	        FillTransition ft1 = new FillTransition();
 	        FillTransition ft2 = new FillTransition();
@@ -43,7 +43,7 @@ public  class NormalSort extends AbstractSort {
 	        return pt;
 	 }
 	
-	public static ParallelTransition swapMe(StackPane l1, StackPane l2, int a ,ArrayList<StackPane> list, double speed) {
+	protected static ParallelTransition swapMe(StackPane l1, StackPane l2, int a ,ArrayList<StackPane> list, double speed) {
 	  
 	   TranslateTransition t1 = new TranslateTransition();
        TranslateTransition t2 = new TranslateTransition();

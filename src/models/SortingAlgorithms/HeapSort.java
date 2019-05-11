@@ -25,7 +25,7 @@ public class HeapSort extends NormalSort implements Sortable {
             sq.getChildren().add(FillBeforeSwap(list.get(0), list.get(i), speed));
             sq.getChildren().add(swapMe(list.get(0), list.get(i), step, list, speed));
             sq.getChildren().add(FillAfterSwap(list.get(0), list.get(i), speed));
-            sq.getChildren().add(BubbleSort.donePosition(list.get(i)));
+            sq.getChildren().add(FillSortedPosition(list.get(i)));
             heapify(arr, i, 0, sq,list, speed); 
         } 
        

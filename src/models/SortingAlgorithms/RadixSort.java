@@ -69,7 +69,7 @@ public class RadixSort extends OtherSort implements Sortable {
 		   
 		   ParallelTransition pt = new ParallelTransition();
 		   for (int i = 0; i < list.size(); i++) {
-			   pt.getChildren().add(BubbleSort.donePosition(list.get(i)));
+			   pt.getChildren().add(FillSortedPosition(list.get(i)));
 			
 		}
 		   return pt;

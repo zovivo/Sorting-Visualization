@@ -17,16 +17,7 @@ import models.Element;
 public class BubbleSort extends NormalSort implements Sortable {
 	
 	
-	public static ParallelTransition donePosition(StackPane sp) {
-		ParallelTransition pl = new ParallelTransition();
-		FillTransition ft = new FillTransition();
-		ft.setShape((Element)sp.getChildren().get(0));
-        ft.setDuration(Duration.millis(100));
-        ft.setToValue(Color.BLUEVIOLET);
-        pl.getChildren().add(ft);
-		return pl;
-		
-	}
+	
 	
 	@Override
 	public SequentialTransition SortAndDisplay( int[] arr,ArrayList<StackPane> list, double speed) {
@@ -55,7 +46,7 @@ public class BubbleSort extends NormalSort implements Sortable {
 		                
 		            }
 		            System.out.println(donePosition);
-		            sq.getChildren().add(donePosition(list.get(donePosition)));
+		            sq.getChildren().add(FillSortedPosition(list.get(donePosition)));
 		            
 		        
 		           

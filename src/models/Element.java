@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Element extends Rectangle {
-	private static final Color color = Color.valueOf("#ADD8E6");
-	private static final double width=40;
+	private  final Color color = Color.valueOf("#ADD8E6");
+	private  final double width=40;
 	private int CurrentPosition;
 	private int value;
 	public int getCurrentPosition() {
