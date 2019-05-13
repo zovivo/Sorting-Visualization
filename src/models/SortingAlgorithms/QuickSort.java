@@ -25,7 +25,7 @@ public class QuickSort extends NormalSort implements Sortable {
 	        	 int pi = partition(arr, low, high, sq,list,speed); 
 		            sq.getChildren().add(FillSortedPosition(list.get(pi)));
 		            sort(arr, low, pi-1, sq,list,speed);
-		            sq.getChildren().add(FillSortedPosition(list.get(pi-1)));
+		            sq.getChildren().add(FillSortedPosition(list.get(low)));
 		            sort(arr, pi+1, high, sq,list,speed);
 		            sq.getChildren().add(FillSortedPosition(list.get(high)));
 	        } 
