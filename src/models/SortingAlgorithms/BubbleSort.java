@@ -54,7 +54,7 @@ public class BubbleSort extends NormalSort implements Sortable {
 		           donePosition++;
 		                
 		            }
-		            System.out.println(donePosition);
+		            //System.out.println(donePosition);
 		            sq.getChildren().add(FillSortedPosition(list.get(donePosition)));
 		            
 		        

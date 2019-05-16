@@ -43,7 +43,6 @@ import models.SortingAlgorithms.BubbleSort;
 import models.SortingAlgorithms.QuickSort;
 import models.SortingAlgorithms.RadixSort;
 import models.SortingAlgorithms.HeapSort;
-import view.viewcode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -75,7 +74,6 @@ public class SortViewController  {
 	
 	private ArrayList<StackPane> list = new ArrayList<>();
 	private double speed = 1000;
-	
 	
 	public static ArrayList<StackPane> sortUI(HBox hBox,ChoiceBox<String> choicebox ) {
 		choicebox.setItems(FXCollections.observableArrayList("Bubble Sort","Quick Sort","Heap Sort","Radix Sort"));

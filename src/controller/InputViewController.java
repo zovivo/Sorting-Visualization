@@ -114,7 +114,8 @@ NumberList = FXCollections.observableArrayList(arr);
 	      NumberList = FXCollections.observableArrayList(arr);*/
 	      
 		
-		numberTextField.textProperty().addListener((obs,oldText,newText) -> {Enter.setDisable(newText.trim().isEmpty());});
+		numberTextField.textProperty().addListener((obs,oldText,newText) 
+				-> {Enter.setDisable(newText.trim().isEmpty());});
 		numbercolumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
 		
 		userTable.setItems(NumberList);
